@@ -1,22 +1,62 @@
-.App {
-  text-align: center;
+header{
+  display:flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding-right:10%;
+  padding-bottom:20px;
+  background-color:#4998e5;
+  color:white;
+  
+  
 }
 
-.App-logo {
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.input{
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: flex-end;
+  width:100%;
+
 }
 
-.App-link {
-  color: #09d3ac;
+.insert{
+  width:60vw;
+  margin-top:10px;
+  border:1px solid white;
+  height:35px;
+  border-radius:10px;
+  box-shadow:inset 0 0 1.5px #d8d0d0;
+}
+::placeholder{
+  font-size: 20px;
+
+}
+.add-task{
+  width:7%;
+  margin-top:20px;
+  background:none;
+  border:1px solid white;
+  height:35px;
+  border-radius: 5px;
+  background-color:#4998e5;
+  font-size:17px;
+  color:white;
+}
+.add-task:hover{
+  box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
+}
+
+h1{
+  font-size:70px;
+}
+
+main{
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+}
+main p{
+  font-size:30px;
+  font-weight:400;
+  color:#939393;
 }
