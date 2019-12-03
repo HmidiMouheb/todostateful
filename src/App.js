@@ -1,60 +1,45 @@
-import "./App.css";
-import React, { Component } from "react";
-import Item from "./Components/Item";
+import React from "react";
+import { connect } from "react-redux";
+import { addTaskAction } from "./actions/addTaskAction";
+import Task from "./Components/Task";
 
-export default class App extends Component {
-  state = {
-    grabbedValue: "",
-    taskList: []
-  };
+class App extends React.Component {
+  constructor(props) {
+    super(props);
 
-  doneHandler = (i) => {
-    let newState = this.state.taskList;
-    newState[i].isDone = true;
-    this.setState({
-      taskList: newState
-});
-    
-  };
-  deleteHandler = (i) => {
-    let newState = this.state.taskList;
-    newState.splice(i, 1);
-    this.setState({
-      taskList: newState
-    });
-  };
-  grabValue = parm => {
-    this.setState({ grabbedValue: parm });
-  };
+    this.state = {
+      taskName: ""
+    };
+  }
 
-  addTask = e => {
-    e.preventDefault();
-    this.setState({
-      taskList: [
-        ...this.state.taskList,
-        { taskName: this.state.grabbedValue, isDone: false, id: 5 }
-      ],
-      grabbedValue: ""
-    });
+  addTaskHandler = t => {
+    this.props.addTask(t);
+    this.setState({taskName:""})
   };
 
   render() {
-    console.log(this.state.taskList);
     return (
       <div className="App">
-        <div>
+        <h1>To do App!</h1>
+        <form onSubmit={e => e.preventDefault()}>
           <input
+            onChange={e => this.setState({ taskName: e.target.value })}
             type="text"
-            onChange={e => this.grabValue(e.target.value)}
-            value={this.state.grabbedValue}
+            value={this.state.taskName}
           ></input>
-          <button onClick={this.addTask}>Add</button>
-        </div>
-        <main>
-          <p>Let's get some work done!</p>
-          <Item taskList={this.state.taskList} undoHandler={this.doneHandler} deleteHandler={this.deleteHandler} />
-        </main>
+          <button onClick={() => this.addTaskHandler(this.state.taskName)}>Addtask</button>
+        </form>
+        <Task />
       </div>
     );
   }
 }
+// const mapStateToProps = state => {
+//   return state;
+// };
+
+const mapActionsToProps = {
+  addTask: addTaskAction
+};
+
+export default connect(null, mapActionsToProps)(App);
